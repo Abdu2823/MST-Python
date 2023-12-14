@@ -1,0 +1,38 @@
+\\sql Practice Problem Database Creation: Create a new database named "OnlineBookstore". Tables Creation: Create the "books" table with columns: book_id (primary key), title, author_id (foreign key), price, and publication_year. Create the "authors" table with columns: author_id (primary key), author_name, and country. Create the "orders" table with columns: order_id (primary key), book_id (foreign key), customer_name, and order_date. Data Insertion: Insert sample data into the "books" table. Insert sample data into the "authors" table. Insert sample data into the "orders" table. Data Retrieval: Retrieve all books from the "books" table. Retrieve all authors from the "authors" table.
+
+CREATE TABLE books (
+    book_id INT PRIMARY KEY,
+    title TEXT,
+    author_id INTEGER,
+    price REAL,
+    publication_year INTEGER,
+    FOREIGN KEY (author_id) REFERENCES authors (author_id)
+);
+
+CREATE TABLE authors (
+    author_id INTEGER PRIMARY KEY,
+    author_name VARCHAR(20),
+    country VARCHAR(20)
+);
+
+CREATE TABLE orders (
+    order_id INTEGER PRIMARY KEY,
+    book_id INTEGER,
+    customer_name VARCHAR(20),
+    order_date VARCHAR(20),
+    FOREIGN KEY (book_id) REFERENCES books (book_id)
+);
+INSERT INTO authors (author_id, author_name, country) VALUES
+(1, 'Author 1', 'USA'),
+(2, 'Author 2', 'UK');
+
+INSERT INTO books (book_id, title, author_id, price, publication_year) VALUES
+(1, 'Book 1', 1, 9.99, 2022),
+(2, 'Book 2', 2, 14.99, 2021);
+
+INSERT INTO orders (order_id, book_id, customer_name, order_date) VALUES
+(1, 1, 'Customer 1', '2022-01-01'),
+(2, 2, 'Customer 2', '2021-12-15');
+SELECT * FROM books;
+SELECT * FROM authors;
+SELECT * FROM orders;
